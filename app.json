@@ -2,6 +2,6 @@
   "name": "Salesforce Conference App",
   "description": "Conference Management App built on Salesforce1 Platform",
   "env": {
-    "APP_ID": "3MVG9szVa2RxsqBYI3cq7vgE3hxMm4FYgwvpuhhE16JyV6wVTuseey4GPMgPeVeZh9CXBGge5D_jG6WTBRX1K"
+    "APP_ID": ""
   }
 }
