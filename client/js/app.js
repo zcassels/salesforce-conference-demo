@@ -74,6 +74,19 @@ function showSessionDetails(sessionId) {
     return false;
 }
 
-var slider = new PageSlider($('body')); // Initialize PageSlider micro-library for nice and hardware-accelerated page transitions
-router.addRoute('', showSessionList);
+function displayLoginInfo() {
+    force.getLoginInfo(function(data) {
+        $('#welcome').append("<h2>Welcome " + data.display_name + "</h2>");
+        $('#welcome').append("<hr/>")
+        $('#welcome').append("<h3>User Name: " + data.username + "</h3>")
+        $('#welcome').append("<h3>Email: " + data.email + "</h3>")
+    }, 
+    function(error) {
+        alert(error)
+    })
+}
+
+//var slider = new PageSlider($('body')); // Initialize PageSlider micro-library for nice and hardware-accelerated page transitions
+// router.addRoute('', showSessionList);
+router.addRoute('', displayLoginInfo)
 router.addRoute('sessions/:id', showSessionDetails);

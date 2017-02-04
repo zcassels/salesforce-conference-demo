@@ -280,6 +280,10 @@ var force = (function () {
         return (typeof(oauth) !== 'undefined') ? oauth.id.split('/').pop() : undefined;
     }
 
+    function getOrgId() {
+        return (typeof(oauth) !== 'undefined') ? oauth.id.split('/')[oauth.id.split('/').length-2] : undefined;
+    }
+
     /**
      * Check the login status
      * @returns {boolean}
@@ -362,11 +366,14 @@ var force = (function () {
         xhr.open(method, url, true);
         xhr.setRequestHeader("Accept", "application/json");
         xhr.setRequestHeader("Authorization", "Bearer " + oauth.access_token);
+        xhr.setRequestHeader("UserId", getUserId());
+        xhr.setRequestHeader("OrgId", getOrgId());
         if (obj.contentType) {
             xhr.setRequestHeader("Content-Type", obj.contentType);
         }
         if (!oauthPlugin) {
-            xhr.setRequestHeader("Target-URL", oauth.instance_url);
+            var targetUrl = obj.url ? obj.url : oauth.instance_url;
+            xhr.setRequestHeader("Target-URL", targetUrl);
         }
         xhr.send(obj.data ? JSON.stringify(obj.data) : undefined);
     }
@@ -382,6 +389,17 @@ var force = (function () {
             {
                 path: '/services/data/' + apiVersion + '/query',
                 params: {q: soql}
+            },
+            successHandler,
+            errorHandler
+        );
+    }
+
+    function getLoginInfo(successHandler, errorHandler) {
+        request(
+            {
+                url: loginURL,
+                path: "/" + oauth.id.split("/").splice(3).join("/")
             },
             successHandler,
             errorHandler
@@ -514,7 +532,8 @@ var force = (function () {
         upsert: upsert,
         retrieve: retrieve,
         discardToken: discardToken,
-        oauthCallback: oauthCallback
+        oauthCallback: oauthCallback,
+        getLoginInfo: getLoginInfo
     };
 
 }());
