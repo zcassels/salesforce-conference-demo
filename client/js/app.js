@@ -1,17 +1,16 @@
 function displayLoginInfo() {
     force.getLoginInfo(function(data) {
-        console.log(data);
-        $("#signin").hide();
+
         $("#welcome").show();
 
-        var welcomeform = "<div id=\"welcomeWrapper\"><h2 class=\"page-header\">Welcome " + data.display_name + "</h2>";
-        welcomeform += "<h4>User Name: " + data.username + "</h3>";
-        welcomeform += "<h4>Email: " + data.email + "</h3>";
-        welcomeform += "<h4>User Id: " + data.user_id + "</h3>";
-        welcomeform += "<h4>Org Id: " + data.organization_id + "</h3>";
-        welcomeform += "<button type=\"button\" class=\"btn btn-default\" id=\"logout\" onClick=\"logout()\">Sign out</button></div>"
+        $("#displayName").text("Welcome " + data.display_name + "!");
+        $("#userName").text("User Name: " + data.username);
+        $("#email").text("Email: " + data.email);
+        $("#userId").text("User Id: " + data.user_id);
+        $("#orgId").text("Org Id: " + data.organization_id);
 
-        $('#welcome').append(welcomeform);
+        console.log(data);
+        $("#signin").hide();
     }, 
     function(error) {
         alert(error)
@@ -44,9 +43,12 @@ function logout() {
     force.discardToken();
 
     $("#signin").show();
-    $("#welcomeWrapper").remove();
     $("#welcome").hide();
     $("#signin_btn").prop("disabled", false);
 }
 
 router.addRoute('', displayLoginInfo)
+
+$(function() {
+    $("#welcome").hide();
+});

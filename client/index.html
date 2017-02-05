@@ -20,7 +20,6 @@
 </head>
 <body>
 
-
 <script src="lib/router.js"></script>
 <!--<script src="lib/pageslider.js"></script>-->
 <script src="lib/force.js"></script>
@@ -30,7 +29,14 @@
     <h2 class="page-header">Salesforce Integration Test Page</h2>
     <button id="signin_btn" onclick="login()" type="button" class="btn btn-default">Sign into Salesforce</button>
 </div>
-<div id="welcome"></div>
+<div id="welcome">
+    <h2 class="page-header" id="displayName">Welcome</h2>
+    <h4 id="userName">User Name:</h3>
+    <h4 id="email">Email:</h3>
+    <h4 id="userId">User Id:</h3>
+    <h4 id="orgId">Org Id:</h3>
+    <button type="button" class="btn btn-default" id="logout" onClick="logout()">Sign out</button>
+</div>
 </div>
 </body>
 </html>
