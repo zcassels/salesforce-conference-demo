@@ -27,15 +27,36 @@
 <div class="container">
 <div id="signin">
     <h2 class="page-header">Salesforce Integration Test Page</h2>
-    <button id="signin_btn" onclick="login()" type="button" class="btn btn-default">Sign into Salesforce</button>
+    <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <button type="button" id="signin_btn" onclick="login()" class="btn btn-default btn-lg btn-block">Sign into Salesforce</button>
+    </div>
+    </div>
 </div>
 <div id="welcome">
-    <h2 class="page-header" id="displayName">Welcome</h2>
-    <h4 id="userName">User Name:</h3>
-    <h4 id="email">Email:</h3>
-    <h4 id="userId">User Id:</h3>
-    <h4 id="orgId">Org Id:</h3>
-    <button type="button" class="btn btn-default" id="logout" onClick="logout()">Sign out</button>
+    <h4 class="page-header">Welcome <span id="displayName"></span>! <a href="#" onClick="logout()">Sign-out</a></h4>
+    <p>User Name: <span id="username"></span> | Email: <span id="email"></span> | User Id: <span id="userId"></span> | Org Id: <span id="orgId"></span></p>
+</div>
+
+<div id="configs">
+    <h2 class="page-header">Test Data</h2>
+
+    <ul class="list-group" id="configsList">
+        <!--<li class="list-group-item">Example</li>-->
+
+    </ul>
+
+    <div class="row">
+        <div class="col-lg-6">
+            <form>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Add Test Data</label>
+                <input type="email" class="form-control" id="configInput" placeholder="Test Config">
+                <button type="button" id="submit_btn" onclick="addConfig()" class="btn btn-default btn-lg">Add</button>
+            </div>
+            </form>
+        </div>
+        </div>
 </div>
 </div>
 </body>

@@ -292,6 +292,10 @@ var force = (function () {
         return (oauth && oauth.access_token) ? true : false;
     }
 
+    function getSessionToken() {
+        return oauth.access_token;
+    }
+
     /**
      * Lets you make any Salesforce REST API request.
      * @param obj - Request configuration object. Can include:
@@ -533,6 +537,7 @@ var force = (function () {
         retrieve: retrieve,
         discardToken: discardToken,
         oauthCallback: oauthCallback,
+        getSessionToken: getSessionToken,
         getLoginInfo: getLoginInfo
     };
 
